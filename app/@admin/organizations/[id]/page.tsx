@@ -1,6 +1,6 @@
+'use client'
 import { useOrganizationStore } from "@/lib/store"
 import { Mail, MapPin, Phone } from "lucide-react"
-import Image from "next/image"
 
 type Props = {
     params: {

@@ -12,27 +12,30 @@ import {
   } from "@/components/ui/form"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
- 
-const loginSchema = z.object({
-	email: z.string().min(2, {
-		message: "Username must be at least 2 characters.",
-	}).refine((value) => value === "admin@test.com" || value === "donor@test.com" || value === "receiver@test.com", {
-		message: "Email does not exist.",
-	}),
-	password: z.string().min(8, {
-		message: "Password must be at least 8 characters.",
-	})
-})
-.refine((values) => {
-    if(values.email === "admin@test.com" && values.password === "admin123") return true
-    if(values.email === "donor@test.com" && values.password === "donor123") return true
-    if(values.email === "receiver@test.com" && values.password === "receiver123") return true
-    return false
-}, { message: "Password is incorrect.", path: ["password"] })
+import { useAdminStore } from "@/lib/store"
 
 export default function LogInForm()
 {
     const router = useRouter()
+
+    const { admin } = useAdminStore()
+
+    const loginSchema = z.object({
+        email: z.string().min(2, {
+            message: "Username must be at least 2 characters.",
+        }).refine((value) => value === "admin@test.com" || value === "donor@test.com" || value === "receiver@test.com", {
+            message: "Email does not exist.",
+        }),
+        password: z.string().min(8, {
+            message: "Password must be at least 8 characters.",
+        })
+    })
+    .refine((values) => {
+        if(values.email === "admin@test.com" && values.password === admin.password) return true
+        if(values.email === "donor@test.com" && values.password === "donor123") return true
+        if(values.email === "receiver@test.com" && values.password === "receiver123") return true
+        return false
+    }, { message: "Password is incorrect.", path: ["password"] })
 
     const form = useForm<z.infer<typeof loginSchema>>({
         resolver: zodResolver(loginSchema),
@@ -94,7 +97,7 @@ export default function LogInForm()
                 >
                     Log in
                 </button>
-                {/* <p className='text-[#003B33] font-medium w-full text-left max-w-[408px] mt-8'>Don't have an account? <span className='text-[rgba(0,59,51,1)] cursor-pointer font-bold'>Sign up</span></p> */}
+                <p className='text-[#003B33] font-medium w-full text-left max-w-[408px] mt-8'>Don't have an account? <span className='text-[rgba(0,59,51,1)] cursor-pointer font-bold'>Sign up</span></p>
             </form>
         </Form>
     )

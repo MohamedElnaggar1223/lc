@@ -1,4 +1,4 @@
-import { UserCog, ListChecks, Home, Building2 } from "lucide-react";
+import { UserCog, ListChecks, Home, Building2, Users, UserCheck } from "lucide-react";
 
 export const adminSideBarMenu = [
     {
@@ -17,15 +17,50 @@ export const adminSideBarMenu = [
         path: "/submission-review",
     },
     {
+        title: "Donors Requests",
+        icon: <UserCheck width={48} />,
+        path: "/donors-reviews",
+    },
+    {
         title: "Organizations List",
         icon: <Building2 width={48} />,
         path: "/organizations",
     },
     {
         title: "Donors List",
-        icon: <ListChecks width={48} />,
+        icon: <Users width={48} />,
         path: "/donors",
     },
+]
+
+export const governorates = [
+    "Alexandria", 
+    "Aswan", 
+    "Asyut", 
+    "Beheira", 
+    "Beni Suef", 
+    "Cairo", 
+    "Dakahlia", 
+    "Damietta", 
+    "Faiyum", 
+    "Gharbia", 
+    "Giza", 
+    "Ismailia", 
+    "Kafr El Sheikh", 
+    "Luxor", 
+    "Matruh", 
+    "Minya", 
+    "Monufia", 
+    "New Valley", 
+    "North Sinai", 
+    "Port Said", 
+    "Qalyubia", 
+    "Qena", 
+    "Red Sea", 
+    "Sharqia", 
+    "Sohag", 
+    "South Sinai", 
+    "Suez",
 ]
 
 // export const organinzationRequestList = [

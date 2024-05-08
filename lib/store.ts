@@ -160,3 +160,21 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
         organizations: state.organizations.map((org) => org.name === name ? organization : org)
     }))
 }))
+
+export type Admin = {
+    email: string,
+    password: string,
+}
+
+export type AdminState = {
+    admin: Admin,
+    updatePassword: (newPassword: string) => void,
+}
+
+export const useAdminStore = create<AdminState>((set) => ({
+    admin: {
+        email: 'admin@test.com',
+        password: 'admin123'
+    },
+    updatePassword: (newPassword) => set((state) => ({ admin: {...state.admin, password: newPassword} }))
+}))
