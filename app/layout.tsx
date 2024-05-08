@@ -71,7 +71,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={playfair.className}>
-        <main className="relative w-screen h-screen max-h-screen flex">
+        <main className="relative w-screen overflow-x-hidden h-screen max-h-screen flex">
           <Slider />
           <div className='h-screen max-h-screen flex flex-col flex-1 py-4 backgroundImage'>
             <TopBar />

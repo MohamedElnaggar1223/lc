@@ -29,6 +29,7 @@ export default function Slider()
                             exit={{ rotate: 180}} 
                             onClick={() => setSliderOpen(false)} 
                             layoutId="XId"
+                            className='cursor-pointer'
                         />
                     ) : (
                         <MenuMotion 
@@ -37,12 +38,13 @@ export default function Slider()
                             exit={{ rotate: 180}} 
                             onClick={() => setSliderOpen(true)} 
                             layoutId="menuId" 
+                            className='cursor-pointer'
                         />
                     )}
                 </div>
                 <div className='gap-12 flex flex-col my-6 w-full'>
                     {adminSideBarMenu.map((menu, index) => (
-                        <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
+                        <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
                             {menu.icon}
                             {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}
                         </div>
