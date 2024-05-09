@@ -409,7 +409,7 @@ export type Teacher = {
     email: string
     status: 'Pending' | 'Accepted' | 'Declined'
     pdf: string[]
-    subject: string,
+    subject: "Arabic" | "Art" | "Biology" | "Chemistry" | "Computer Science" | "English" | "French" | "Geography" | "History" | "Math" | "Music" | "Physics" | "Physical Education" | "Religion" | "Social Studies" | "Spanish"
     cases: number
 }
 
@@ -427,15 +427,15 @@ export const useTeacherStore = create<TeacherState>()((set) => ({
         {
             email: 'donor2@example.com',
             status: 'Pending',
-            pdf: ['/teachers/teacher1.pdf'],
+            pdf: ['/pdfs/teacher1.pdf'],
             subject: 'Math',
             cases: 10,
         },
         {
             email: 'donor3@example.com',
             status: 'Accepted',
-            pdf: ['/teachers/teacher2.pdf'],
-            subject: 'Science',
+            pdf: ['/pdfs/teacher2.pdf'],
+            subject: 'Biology',
             cases: 20,
         }
     ],

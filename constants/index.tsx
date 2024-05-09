@@ -63,6 +63,25 @@ export const governorates = [
     "Suez",
 ]
 
+export const subjects = [
+    "Arabic",
+    "Art",
+    "Biology",
+    "Chemistry",
+    "Computer Science",
+    "English",
+    "French",
+    "Geography",
+    "History",
+    "Math",
+    "Music",
+    "Physics",
+    "Physical Education",
+    "Religion",
+    "Social Studies",
+    "Spanish",
+]
+
 // export const organinzationRequestList = [
 //     {
 //         name: 'Organization 6',

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
-import LogInForm from "@/components/shared/LogInForm";
 import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
 import "./globals.css";
@@ -59,8 +58,7 @@ export default async function RootLayout({
             </div>
             <div className='flex flex-1 backgroundGradient py-16 items-center justify-center'>
               <div className='bg-[#FFF] text-[#003B33] rounded-3xl max-w-[568px] w-screen h-full flex flex-col justify-evenly px-16'>
-                <p className='font-bold text-5xl'>Log in</p>
-                <LogInForm />
+                {children}
               </div>
             </div>
           </section>
