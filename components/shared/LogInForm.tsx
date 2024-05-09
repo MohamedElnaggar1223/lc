@@ -12,13 +12,14 @@ import {
   } from "@/components/ui/form"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
-import { useAdminStore } from "@/lib/store"
+import { useAdminStore, useDonorStore } from "@/lib/store"
 
 export default function LogInForm()
 {
     const router = useRouter()
 
     const { admin } = useAdminStore()
+    const { donors } = useDonorStore()
 
     const loginSchema = z.object({
         email: z.string().min(2, {
@@ -32,7 +33,7 @@ export default function LogInForm()
     })
     .refine((values) => {
         if(values.email === "admin@test.com" && values.password === admin.password) return true
-        if(values.email === "donor@test.com" && values.password === "donor123") return true
+        if(donors.find(donor => donor.email === values.email) && donors.find(donor => donor.email === values.email)?.password === values.password) return true
         if(values.email === "receiver@test.com" && values.password === "receiver123") return true
         return false
     }, { message: "Password is incorrect.", path: ["password"] })
@@ -47,7 +48,7 @@ export default function LogInForm()
 
     const onSubmit = (values: z.infer<typeof loginSchema>) => {
         if(values.email === "admin@test.com") setCookie('adminLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
-        if(values.email === "donor@test.com") setCookie('donorLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
+        if(donors.find(donor => donor.email === values.email)) setCookie('donorLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
         if(values.email === "receiver@test.com") setCookie('receiverLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
         router.refresh()
     }
@@ -97,7 +98,10 @@ export default function LogInForm()
                 >
                     Log in
                 </button>
-                <p className='text-[#003B33] font-medium w-full text-left max-w-[408px] mt-8'>Don't have an account? <span className='text-[rgba(0,59,51,1)] cursor-pointer font-bold'>Sign up</span></p>
+                <p className='text-[#003B33] font-medium w-full text-left max-w-[408px] mt-8'>Don't have an account? <span onClick={() => {
+                    router.push('/sign-up')
+                    router.refresh()
+                }} className='text-[rgba(0,59,51,1)] cursor-pointer font-bold'>Sign up</span></p>
             </form>
         </Form>
     )
