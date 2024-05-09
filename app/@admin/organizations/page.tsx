@@ -6,6 +6,7 @@ import { Filter, Search, Trash2 } from "lucide-react";
 import { useOrganizationStore } from "@/lib/store";
 import { governorates } from "@/constants";
 import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function OrgainzationsListPage()
 {
@@ -73,30 +74,32 @@ export default function OrgainzationsListPage()
                     </div>
                 )}
             </div>
-            <div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
-                {organizations
-                .filter(organization => organization.status === 'Accepted')
-                .filter(organization => organization.name.toLowerCase().includes(search.toLowerCase()))
-                .filter(organization => types.length > 0 ? types.includes(organization.type) : true)   
-                .filter(organization => governoratesList.length > 0 ? governoratesList.includes(organization.governorate) : true)           
-                .map((organization, index) => (
-                    <div onClick={() => router.push(`/organizations/${index}`)} key={index} className='px-12 flex items-center justify-between py-4 gap-12 cursor-pointer'>
-                        <p className='text-[rgba(0,59,51,1)] text-2xl'>{index + 1}</p>
-                        <div className='flex flex-col gap-3 flex-1'>
-                            <p className='text-[rgba(0,59,51,1)] text-2xl'>{organization.name}</p>
-                            <p className='text-[rgba(0,59,51,1)] text-xl'>{organization.type}</p>
-                            <p className='text-[rgba(0,59,51,1)] text-lg'>{organization.description}</p>
+            <AnimatePresence>
+                <motion.div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+                    {organizations
+                    .filter(organization => organization.status === 'Accepted')
+                    .filter(organization => organization.name.toLowerCase().includes(search.toLowerCase()))
+                    .filter(organization => types.length > 0 ? types.includes(organization.type) : true)   
+                    .filter(organization => governoratesList.length > 0 ? governoratesList.includes(organization.governorate) : true)           
+                    .map((organization, index) => (
+                        <div onClick={() => router.push(`/organizations/${organization.name}`)} key={organization.name} className='px-12 flex items-center justify-between py-4 gap-12 cursor-pointer'>
+                            <p className='text-[rgba(0,59,51,1)] text-2xl'>{index + 1}</p>
+                            <div className='flex flex-col gap-3 flex-1'>
+                                <motion.p layoutId={`${organization.name}${organization.name}`} className='text-[rgba(0,59,51,1)] text-2xl'>{organization.name}</motion.p>
+                                <motion.p layoutId={`${organization.type}${organization.name}`} className='text-[rgba(0,59,51,1)] text-xl'>{organization.type}</motion.p>
+                                <motion.p layoutId={`${organization.description}${organization.name}`} className='text-[rgba(0,59,51,1)] text-lg'>{organization.description}</motion.p>
+                            </div>
+                            <Trash2 
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    removeOrganization(organization.name)
+                                }} 
+                                className='cursor-pointer'
+                            />
                         </div>
-                        <Trash2 
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                removeOrganization(organization.name)
-                            }} 
-                            className='cursor-pointer'
-                        />
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </motion.div>
+            </AnimatePresence>
         </section>
     )
 }
