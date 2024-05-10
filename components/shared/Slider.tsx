@@ -4,14 +4,17 @@ import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { LogOut, Menu, X } from "lucide-react"
 import { useState } from "react"
-import { UserCog } from 'lucide-react'
-import { adminSideBarMenu } from "@/constants"
+import { adminSideBarMenu, organizationSideBarMenu } from "@/constants"
 import { usePathname, useRouter } from "next/navigation"
-import { deleteCookie } from "cookies-next"
+import { deleteCookie, getCookie } from "cookies-next"
 
 export default function Slider()
 {
     const [sliderOpen, setSliderOpen] = useState(false)
+
+    const isAdminLoggedIn = getCookie('adminLoggedIn')
+    const isDonorLoggedIn = getCookie('donorLoggedIn')
+    const isOrganizationLoggedIn = getCookie('organizationLoggedIn')
 
     const pathname = usePathname()
     const router = useRouter()
@@ -44,12 +47,28 @@ export default function Slider()
                     )}
                 </div>
                 <div className='gap-12 flex flex-col my-6 w-full h-full'>
-                    {adminSideBarMenu.map((menu, index) => (
-                        <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
-                            {menu.icon}
-                            {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}
-                        </div>
-                    ))}
+                    {isAdminLoggedIn ? (
+                        adminSideBarMenu.map((menu, index) => (
+                            <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
+                                {menu.icon}
+                                {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}
+                            </div>
+                        ))
+                    ) : isDonorLoggedIn ? (
+                        adminSideBarMenu.map((menu, index) => (
+                            <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
+                                {menu.icon}
+                                {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}
+                            </div>
+                        ))
+                    ) : isOrganizationLoggedIn ? (
+                        organizationSideBarMenu.map((menu, index) => (
+                            <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
+                                {menu.icon}
+                                {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}
+                            </div>
+                        ))
+                    ) : null}
                     <div 
                         onClick={() => {
                             deleteCookie('adminLoggedIn')

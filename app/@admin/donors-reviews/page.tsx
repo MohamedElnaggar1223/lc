@@ -1,7 +1,8 @@
 'use client'
 
 import { useDoctorStore, useDonorStore, useTeacherStore } from "@/lib/store"
-import { Mail } from "lucide-react"
+import { Mail, Map, MapPinned } from "lucide-react"
+import Link from "next/link"
 
 export default function DonorsApplications()
 {
@@ -40,6 +41,26 @@ export default function DonorsApplications()
                             <div className='flex gap-2 h-full'>
                                 <button onClick={() => acceptTeacher(teacher.email)} className='rounded-3xl h-fit px-4 flex items-center justify-center py-0.5 bg-[rgba(147,255,152,0.5)]'>Accept</button>
                                 <button onClick={() => declineTeacher(teacher.email)} className='rounded-3xl h-fit px-4 flex items-center justify-center py-0.5 bg-[rgba(255,141,141,0.5)]'>Decline</button>
+                            </div>
+                        </div>
+                    )
+                })}
+            {doctors
+                .filter(doctor => doctor.status === 'Pending')
+                .map((doctor, index) => {
+                    const donor = donors.find(donor => donor.email === doctor.email)
+                    return (
+                        <div className='px-12 flex items-center gap-8 justify-between py-4'>
+                            <p className='text-[rgba(0,59,51,1)] text-2xl'>{index + 1}</p>
+                            <div className='flex flex-1 flex-col gap-3'>
+                                <p className='text-[rgba(0,59,51,1)] text-2xl'>{donor?.firstName} {donor?.lastName}</p>
+                                <Link target="_blank" href={doctor.clinic.location}><p className='text-[rgba(0,59,51,1)] text-xl flex items-center gap-1'><MapPinned />Show Clinic on Map</p></Link>
+                                <p className='text-[rgba(0,59,51,1)] text-lg flex items-center gap-1'><Mail />{doctor.email}</p>
+                                <button onClick={() => downloadFiles(doctor.pdf)} className='outline-none border-none mr-auto max-w-fit bg-[#F8E6D9] px-1.5 py-1.5 rounded-md'>View PDF(s)</button>
+                            </div>
+                            <div className='flex gap-2 h-full'>
+                                <button onClick={() => acceptDoctor(doctor.email)} className='rounded-3xl h-fit px-4 flex items-center justify-center py-0.5 bg-[rgba(147,255,152,0.5)]'>Accept</button>
+                                <button onClick={() => declineDoctor(doctor.email)} className='rounded-3xl h-fit px-4 flex items-center justify-center py-0.5 bg-[rgba(255,141,141,0.5)]'>Decline</button>
                             </div>
                         </div>
                     )

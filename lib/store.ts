@@ -12,8 +12,13 @@ export type Organization = {
     area: string,
     governorate: "Alexandria" | "Aswan" | "Asyut" | "Beheira" | "Beni Suef" | "Cairo" | "Dakahlia" | "Damietta" | "Faiyum" | "Gharbia" | "Giza" | "Ismailia" | "Kafr El Sheikh" | "Luxor" | "Matruh" | "Minya" | "Monufia" | "New Valley" | "North Sinai" | "Port Said" | "Qalyubia" | "Qena" | "Red Sea" | "Sharqia" | "Sohag" | "South Sinai" | "Suez",
     gender: "Male" | "Female",
-    pdf: string,
+    pdf: string[],
     status: 'Pending' | 'Accepted' | 'Declined',
+    password: string
+    location: {
+        lat: number,
+        lng: number
+    }
 }
 
 export type OrganizationState = {
@@ -31,53 +36,59 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             name: 'Organization 6',
             type: 'Charity',
             description: 'A charity in Egypt that accepts donations.',
-            pdf: '/organizations/organization1.pdf',
+            pdf: ['/organizations/organization1.pdf'],
             firstName: 'John',
             lastName: 'Doe',
             address: '123 Main St',
             area: 'Cairo',
             governorate: 'Cairo',
             email: 'john.doe@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Male',
             status: 'Pending',
+            password: 'password6',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 7',
             type: 'Mosque',
             description: 'A mosque in Egypt that accepts donations.',
-            pdf: '/organizations/organization2.pdf',
+            pdf: ['/organizations/organization2.pdf'],
             firstName: 'Jane',
             lastName: 'Smith',
             address: '456 Elm St',
             area: 'Alexandria',
             governorate: 'Alexandria',
             email: 'jane.smith@example.com',
-            number: '+0987654321',
+            number: '010987654321',
             gender: 'Female',
             status: 'Pending',
+            password: 'password7',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 8',
             type: 'Hospital',
             description: 'A hospital in Egypt that accepts donations.',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
             firstName: 'Bob',
             lastName: 'Johnson',
             address: '789 Oak St',
             area: 'Giza',
             governorate: 'Giza',
             email: 'bob.johnson@example.com',
-            number: '+1357924680',
+            number: '011357924680',
             gender: 'Male',
             status: 'Pending',
+            password: 'password8',
+            location: { lat: 0, lng: 0 }
         },
-    {
+        {
             name: 'Organization 1',
             type: 'Mosque',
             description: 'A mosque in Egypt that accepts donations.',
             email: 'organization1@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             firstName: 'John',
             lastName: 'Doe',
             address: '123 Main St',
@@ -85,14 +96,16 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             governorate: 'Cairo',
             gender: 'Male',
             status: 'Accepted',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
+            password: 'password1',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 2',
             type: 'Charity',
             description: 'A charity organization in Egypt that accepts donations.',
             email: 'organization2@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             firstName: 'Jane',
             lastName: 'Smith',
             address: '456 Elm St',
@@ -100,14 +113,16 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             governorate: 'Alexandria',
             gender: 'Female',
             status: 'Accepted',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
+            password: 'password2',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 3',
             type: 'Hospital',
             description: 'A hospital in Egypt that accepts donations.',
             email: 'organization3@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             firstName: 'Bob',
             lastName: 'Johnson',
             address: '789 Oak St',
@@ -115,14 +130,16 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             governorate: 'Giza',
             gender: 'Male',
             status: 'Accepted',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
+            password: 'password3',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 4',
             type: 'Orphanage',
             description: 'An orphanage in Egypt that accepts donations.',
             email: 'organization4@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             firstName: 'Alice',
             lastName: 'Williams',
             address: '321 Pine St',
@@ -130,14 +147,16 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             governorate: 'Luxor',
             gender: 'Female',
             status: 'Accepted',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
+            password: 'password4',
+            location: { lat: 0, lng: 0 }
         },
         {
             name: 'Organization 5',
             type: 'Public School',
             description: 'A public school in Egypt that accepts donations.',
             email: 'organization5@example.com',
-            number: '+1234567890',
+            number: '011234567890',
             firstName: 'David',
             lastName: 'Brown',
             address: '654 Maple St',
@@ -145,7 +164,9 @@ export const useOrganizationStore = create<OrganizationState>()((set) => ({
             governorate: 'Aswan',
             gender: 'Male',
             status: 'Accepted',
-            pdf: '/organizations/organization3.pdf',
+            pdf: ['/organizations/organization3.pdf'],
+            password: 'password5',
+            location: { lat: 0, lng: 0 }
         },
     ],
     acceptOrganization: (name) => set((state) => ({
@@ -207,7 +228,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 1',
             email: 'donor1@example.com',
             password: 'password1',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Male',
             address: '123 Main St',
             area: 'Cairo',
@@ -220,7 +241,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 2',
             email: 'donor2@example.com',
             password: 'password2',
-            number: '+0987654321',
+            number: '010987654321',
             gender: 'Female',
             address: '456 Elm St',
             area: 'Alexandria',
@@ -233,7 +254,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 3',
             email: 'donor3@example.com',
             password: 'password3',
-            number: '+1357924680',
+            number: '011357924680',
             gender: 'Male',
             address: '789 Oak St',
             area: 'Giza',
@@ -246,7 +267,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 4',
             email: 'donor4@example.com',
             password: 'password4',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Female',
             address: '321 Pine St',
             area: 'Luxor',
@@ -259,7 +280,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 5',
             email: 'donor5@example.com',
             password: 'password5',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Male',
             address: '654 Maple St',
             area: 'Aswan',
@@ -272,7 +293,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 6',
             email: 'donor6@example.com',
             password: 'password6',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Female',
             address: '987 Oak St',
             area: 'Cairo',
@@ -285,7 +306,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 7',
             email: 'donor7@example.com',
             password: 'password7',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Male',
             address: '654 Elm St',
             area: 'Alexandria',
@@ -298,12 +319,12 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 8',
             email: 'donor8@example.com',
             password: 'password8',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Female',
             address: '321 Oak St',
             area: 'Giza',
             governorate: 'Giza',
-            role: 'regular',
+            role: 'doctor',
             activated: true,
         },
         {
@@ -311,7 +332,7 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 9',
             email: 'donor9@example.com',
             password: 'password9',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Male',
             address: '987 Pine St',
             area: 'Luxor',
@@ -324,13 +345,13 @@ export const useDonorStore = create<DonorState>()((set) => ({
             lastName: 'Lastname 10',
             email: 'donor10@example.com',
             password: 'password10',
-            number: '+1234567890',
+            number: '011234567890',
             gender: 'Female',
             address: '654 Maple St',
             area: 'Aswan',
             governorate: 'Aswan',
             role: 'regular',
-            activated: true,
+            activated: false,
         },
     ],
     addDonor: (donor) => set((state) => ({ donors: [...state.donors, donor] })),
@@ -373,7 +394,7 @@ export const useDoctorStore = create<DoctorState>()((set) => ({
                 address: '123 Main St',
                 area: 'Cairo',
                 governorate: 'Cairo',
-                location: 'Room 101',
+                location: 'https://maps.app.goo.gl/9SxqbrT9JDN8Hfms5',
                 specialty: 'Cardiology',
                 cases: 10,
             }
@@ -386,9 +407,22 @@ export const useDoctorStore = create<DoctorState>()((set) => ({
                 address: '456 Elm St',
                 area: 'Alexandria',
                 governorate: 'Alexandria',
-                location: 'Room 202',
+                location: 'https://maps.app.goo.gl/tgCtZfE2Tb23DnbR6',
                 specialty: 'Dermatology',
                 cases: 20,
+            }
+        },
+        {
+            email: 'donor8@example.com',
+            status: 'Accepted',
+            pdf: ['/doctors/doctor2.pdf'],
+            clinic: {
+                address: '789 Oak St',
+                area: 'Giza',
+                governorate: 'Giza',
+                location: 'https://maps.app.goo.gl/6Zu7vzZk3g5G4Q2U6',
+                specialty: 'Orthopedics',
+                cases: 30,
             }
         }
     ],
@@ -449,5 +483,309 @@ export const useTeacherStore = create<TeacherState>()((set) => ({
     removeTeacher: (email) => set((state) => ({ teachers: state.teachers.filter((teacher) => teacher.email !== email) })),
     updateTeacher: (email, teacher) => set((state) => ({
         teachers: state.teachers.map((teach) => teach.email === email ? teacher : teach)
+    }))
+}))
+
+export type Clothes = {
+    age: number,
+    gender: 'Male' | 'Female',
+    season: 'Summer' | 'Winter' | 'Spring' | 'Fall'
+}
+
+export type Food = {
+    type: 'Vegetables' | 'Fruits' | 'Baked Goods' | 'Fresh Meals' | 'Canned Food',
+    quantity: string,
+    name: string
+}
+
+export type Toys = {
+    type: 'Dolls' | 'Cars' | 'Stuffed Toys' | 'Sports' | 'Outdoor' | 'Board Games',
+    age: number
+    quantity: string,
+    gender: 'Male' | 'Female',
+    image: string
+}
+
+export type MedicalSupplies = {
+    type: 'Medication' | 'Medical Devices' | 'Medical Equipment',
+    medicationType?: 'Painkillers' | 'Antibiotics' | 'Antivirals' | 'Antifungals' | 'Antiparasitics',
+    deviceType?: 'Wheelchair' | 'Crutches' | 'Oxygen Tank' | 'Blood Pressure Monitor' | 'Thermometer',
+    quantity: string,
+    use: string,
+    image: string
+    gender: 'Male' | 'Female'
+    medicationUse?: 'Pain Relief' | 'Antibacterial' | 'Antiviral' | 'Antifungal' | 'Antiparasitic'
+}
+
+export type SchoolSupplies = {
+    type: 'Books' | 'Stationery',
+    bookName?: string,
+    bookSummary?: string,
+    bookEdition?: string,
+    bookAuthor?: string,
+    bookLanguage?: string,
+    bookImage?: string,
+    stationaryType?: 'Pens' | 'Pencils' | 'Erasers' | 'Rulers' | 'Sharpeners' | 'Notebooks' | 'Folders' | 'Binders' | 'Scissors' | 'Glue' | 'Tape' | 'Staplers' | 'Staples' | 'Paper' | 'Markers' | 'Highlighters' | 'Crayons' | 'Colored Pencils' | 'Paint' | 'Brushes' | 'Canvas' | 'Sketchbooks' | 'Watercolors' | 'Pastels' | 'Charcoal' | 'Ink' | 'Easels' | 'Palettes' | 'Clay' | 'Glazes' | 'Pottery Tools' | 'Wood' | 'Metal' | 'Plastic' | 'Fabric' | 'Glass' | 'Ceramic'
+}
+
+export type BloodDonation = {
+    bloodType: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-',
+    nameOfPatient: string
+    location: {
+        lat: number,
+        lng: number
+    }
+}
+
+export type MedicalCases = {
+    speciality: 'Cardiology' | 'Dermatology' | 'Orthopedics' | 'Pediatrics' | 'Neurology' | 'Oncology' | 'Gynecology' | 'Urology' | 'Psychiatry' | 'Dentistry',
+    patientName: string,
+    patientAge: number,
+    patientGender: 'Male' | 'Female'
+    patientWeight: number,
+    description: string,
+    location: {
+        lat: number,
+        lng: number
+    }
+    fullfilledBy?: string
+}
+
+export type Teaching = {
+    subject: 'Arabic' | 'Art' | 'Biology' | 'Chemistry' | 'Computer Science' | 'English' | 'French' | 'Geography' | 'History' | 'Math' | 'Music' | 'Physics' | 'Physical Education' | 'Religion' | 'Social Studies' | 'Spanish',
+    numberOfStudents: number,
+    location: {
+        lat: number,
+        lng: number
+    }
+    fullfilledBy?: string
+}
+
+export type PostType = {
+    id: number
+    organization: string,
+    category: 'Clothes' | 'Food' | 'Toys' | 'Medical Supplies' | 'School Supplies' | 'Blood Donation' | 'Medical Cases' | 'Teaching',
+    status?: 'Pending' | 'Fullfilled' | 'In Progress',
+    ETA?: Date | null,
+    details: Clothes | Food | Toys | MedicalSupplies | SchoolSupplies | BloodDonation | MedicalCases | Teaching
+}
+    
+
+export type PostsState = {
+    posts: PostType[],
+    addPost: (post: PostType) => void,
+    removePost: (index: number) => void,
+    updatePost: (index: number, post: PostType) => void,
+    fullfillPost: (index: number, fullfilledBy: string) => void,
+}
+
+export const usePostsStore = create<PostsState>()((set) => ({
+    posts: [
+        {
+            id: 1,
+            organization: 'organization1@example.com',
+            category: 'Clothes',
+            status: 'Pending',
+            details: {
+                age: 7,
+                gender: 'Male',
+                season: 'Winter',
+            } as Clothes
+        },
+        {
+            id: 2,
+            organization: 'organization2@example.com',
+            category: 'Food',
+            status: 'Pending',
+            details: {
+                type: 'Vegetables',
+                quantity: '10KG',
+                name: 'Tomatoes',
+            } as Food
+        },
+        {
+            id: 3,
+            organization: 'organization1@example.com',
+            category: 'Food',
+            status: 'Pending',
+            details: {
+                type: 'Baked Goods',
+                quantity: '20',
+                name: 'Bread',
+            } as Food
+        },
+        {
+            id: 4,
+            organization: 'organization3@example.com',
+            category: 'Medical Supplies',
+            status: 'Pending',
+            details: {
+                type: 'Medication',
+                medicationType: 'Painkillers',
+                quantity: '50',
+                use: 'Pain Relief',
+                image: '/images/medication.webp',
+            } as MedicalSupplies
+        },
+        {
+            id: 5,
+            organization: 'organization2@example.com',
+            category: 'Toys',
+            status: 'Pending',
+            details: {
+                type: 'Dolls',
+                gender: 'Female',
+                quantity: '1',
+                age: 5,
+                image: '/images/doll.png',
+            } as Toys
+        },
+        {
+            id: 6,
+            organization: 'organization3@example.com',
+            category: 'Medical Supplies',
+            status: 'Pending',
+            details: {
+                type: 'Medical Devices',
+                deviceType: 'Wheelchair',
+                quantity: '1',
+                use: 'Mobility',
+                image: '/images/wheelchair.jpg',
+            } as MedicalSupplies
+        },
+        {
+            id: 7,
+            organization: 'organization2@example.com',
+            category: 'Toys',
+            status: 'Pending',
+            details: {
+                type: 'Cars',
+                age: 10,
+                image: '/images/car.png',
+                quantity: '1',
+                gender: 'Male'
+            } as Toys
+        },
+        {
+            id: 8,
+            organization: 'organization5@example.com',
+            category: 'School Supplies',
+            status: 'Pending',
+            details: {
+                type: 'Books',
+                bookName: 'Mathematics 101',
+                bookSummary: 'A book about basic math.',
+                bookEdition: '1st Edition',
+                bookAuthor: 'John Doe',
+                bookLanguage: 'English',
+                bookImage: '/images/book.png',
+            } as SchoolSupplies
+        },
+        {
+            id: 9,
+            organization: 'organization3@example.com',
+            category: 'Blood Donation',
+            status: 'Pending',
+            details: {
+                bloodType: 'A+',
+                nameOfPatient: 'John Doe',
+            } as BloodDonation
+        },
+        {
+            id: 10,
+            organization: 'organization4@example.com',
+            category: 'Clothes',
+            status: 'In Progress',
+            ETA: new Date(new Date().setMinutes(new Date().getMinutes() + 30)),
+            details: {
+                age: 5,
+                gender: 'Female',
+                season: 'Summer',
+            } as Clothes
+        },
+        {
+            id: 11,
+            organization: 'organization4@example.com',
+            category: 'Food',
+            ETA: null,
+            status: 'In Progress',
+            details: {
+                type: 'Fruits',
+                quantity: '5KG',
+                name: 'Apples',
+            } as Food
+        },
+        {
+            id: 12,
+            organization: 'organization3@example.com',
+            category: 'Medical Cases',
+            status: 'Pending',
+            details: {
+                speciality: 'Cardiology',
+                patientName: 'John Doe',
+                patientAge: 45,
+                patientGender: 'Male',
+                patientWeight: 70,
+                description: 'Patient needs a heart transplant.',
+                location: {
+                    lat: 31,
+                    lng: 31
+                }
+            } as MedicalCases
+        },
+        {
+            id: 13,
+            organization: 'organization5@example.com',
+            category: 'Teaching',
+            status: 'Pending',
+            details: {
+                subject: 'Math',
+                numberOfStudents: 30,
+                location: {
+                    lat: 30,
+                    lng: 30
+                }
+            } as Teaching
+        },
+        {
+            id: 14,
+            organization: 'organization3@example.com',
+            category: 'Medical Cases',
+            status: 'Pending',
+            details: {
+                speciality: 'Dermatology',
+                patientName: 'Jane Smith',
+                patientAge: 32,
+                patientGender: 'Female',
+                patientWeight: 60,
+                description: 'Patient needs a skin graft.',
+                location: {
+                    lat: 30.5,
+                    lng: 30.5
+                }
+            } as MedicalCases
+        },
+        {
+            id: 15,
+            organization: 'organization5@example.com',
+            category: 'Teaching',
+            status: 'Pending',
+            details: {
+                subject: 'Chemistry',
+                numberOfStudents: 25,
+                location: {
+                    lat: 30.7,
+                    lng: 30.7
+                }
+            } as Teaching
+        }
+    ],
+    addPost: (post) => set((state) => ({ posts: [...state.posts, post] })),
+    fullfillPost: (id, fullfilledBy) => set((state) => ({
+        posts: state.posts.map((post) => post.id === id ? { ...post, status: 'Fullfilled', details: { ...post.details, fullfilledBy } } : post)
+    })),
+    removePost: (id) => set((state) => ({ posts: state.posts.filter((post) => post.id !== id) })),
+    updatePost: (id, post) => set((state) => ({
+        posts: state.posts.map((p) => p.id === id ? post : p)
     }))
 }))

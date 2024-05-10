@@ -82,7 +82,7 @@ export default function DoctorApplication({ doctor }: Props)
         
         console.log(lat, lng)
         form.setValue('clinicLocation', { lat, lng })
-      };
+    };
 
     const onSubmit = (values: z.infer<typeof doctorSchema>) => {
         updateDoctor(doctor.email, { status: 'Pending', clinic: { address: values.clinicAddress, area: values.clinicArea, cases: parseInt(values.clinicCases), governorate: values.clinicGovernorate, location: `https://www.google.com/maps/search/?api=1&query=${values.clinicLocation.lat},${values.clinicLocation.lng}`, specialty: values.clinicSpecialty }, pdf: values.pdf, email: doctor.email})
@@ -100,7 +100,7 @@ export default function DoctorApplication({ doctor }: Props)
             //@ts-expect-error panTo
             mapRef.current.panTo(currentLocation)
         }
-    };
+    }
     
     return (
         <Form {...form}>

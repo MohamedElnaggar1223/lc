@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/form"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
-import { useAdminStore, useDonorStore } from "@/lib/store"
+import { useAdminStore, useDonorStore, useOrganizationStore } from "@/lib/store"
 import { governorates } from "@/constants"
 
 export default function SignUp()
@@ -21,6 +21,7 @@ export default function SignUp()
 
     const { admin } = useAdminStore()
     const { donors, addDonor } = useDonorStore()
+    const { organizations } = useOrganizationStore()
 
     const signupSchema = z.object({
         firstName: z.string().min(2, {
@@ -45,6 +46,8 @@ export default function SignUp()
             message: "Email already exists.",
         }).refine((value) => value === admin.email ? false : true, {
             message: "Email can not be used.",
+        }).refine((value) => organizations.find(organization => organization.email === value) ? false : true , {
+            message: "Email already exists.",
         }),
         area: z.string().min(2, {
             message: "Area must be at least 2 characters.",

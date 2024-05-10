@@ -12,7 +12,7 @@ import {
   } from "@/components/ui/form"
 import { setCookie } from "cookies-next"
 import { useRouter } from "next/navigation"
-import { useAdminStore, useDonorStore } from "@/lib/store"
+import { useAdminStore, useDonorStore, useOrganizationStore } from "@/lib/store"
 
 export default function LogInForm()
 {
@@ -20,11 +20,12 @@ export default function LogInForm()
 
     const { admin } = useAdminStore()
     const { donors } = useDonorStore()
+    const { organizations } = useOrganizationStore()
 
     const loginSchema = z.object({
         email: z.string().min(2, {
             message: "Username must be at least 2 characters.",
-        }).refine((value) => value === "admin@test.com" || value === "donor@test.com" || value === "receiver@test.com", {
+        }).refine((value) => value === "admin@test.com" || donors.find(donor => donor.email === value) || organizations.find(org => org.email === value), {
             message: "Email does not exist.",
         }),
         password: z.string().min(8, {
@@ -34,7 +35,7 @@ export default function LogInForm()
     .refine((values) => {
         if(values.email === "admin@test.com" && values.password === admin.password) return true
         if(donors.find(donor => donor.email === values.email) && donors.find(donor => donor.email === values.email)?.password === values.password) return true
-        if(values.email === "receiver@test.com" && values.password === "receiver123") return true
+        if(organizations.find(org => org.email === values.email) && organizations.find(org => org.email === values.email)?.password === values.password) return true
         return false
     }, { message: "Password is incorrect.", path: ["password"] })
 
@@ -48,8 +49,16 @@ export default function LogInForm()
 
     const onSubmit = (values: z.infer<typeof loginSchema>) => {
         if(values.email === "admin@test.com") setCookie('adminLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
-        if(donors.find(donor => donor.email === values.email)) setCookie('donorLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
-        if(values.email === "receiver@test.com") setCookie('receiverLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
+        if(donors.find(donor => donor.email === values.email)) 
+        {
+            setCookie('donorLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
+            setCookie('donorEmail', values.email, { maxAge: 60 * 6 * 24 })
+        }
+        if(organizations.find(org => org.email === values.email))
+        {
+            setCookie('organizationLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
+            setCookie('organizationEmail', values.email, { maxAge: 60 * 6 * 24 })
+        }
         router.refresh()
     }
 

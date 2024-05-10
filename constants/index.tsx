@@ -1,4 +1,4 @@
-import { UserCog, ListChecks, Home, Building2, Users, UserCheck } from "lucide-react";
+import { UserCog, ListChecks, Home, Building2, Users, UserCheck, FileClock, NotepadText, FilePlus2 } from "lucide-react";
 
 export const adminSideBarMenu = [
     {
@@ -31,6 +31,52 @@ export const adminSideBarMenu = [
         icon: <Users width={48} />,
         path: "/donors",
     },
+]
+
+export const donorSideBarMenu = [
+    {
+        title: "Dashboard",
+        icon: <Home width={48} />,
+        path: "/",
+    },
+    {
+        title: "My Profile",
+        icon: <UserCog width={48} />,
+        path: "/profile",
+    },
+    {
+        title: "Donations",
+        icon: <ListChecks width={48} />,
+        path: "/donations",
+    },
+]
+
+export const organizationSideBarMenu = [
+    {
+        title: 'My Details',
+        icon: <UserCog width={48} />,
+        path: '/',
+    },
+    {
+        title: 'Fullfilled Posts',
+        icon: <ListChecks width={48} />,
+        path: '/fullfilled-posts',
+    },
+    {
+        title: 'Pending Posts',
+        icon: <NotepadText width={48} />,
+        path: '/pending-posts',
+    },
+    {
+        title: 'In Progress Posts',
+        icon: <FileClock width={48} />,
+        path: '/in-progress-posts',
+    },
+    {
+        title: 'Create Post',
+        icon: <FilePlus2 width={48} />,
+        path: '/create-post',
+    }
 ]
 
 export const governorates = [
@@ -80,6 +126,15 @@ export const subjects = [
     "Religion",
     "Social Studies",
     "Spanish",
+]
+
+export const types = [
+    'Mosque',
+    'Charity',
+    'Hospital',
+    'Orphanage',
+    'Public School',
+    'Church'
 ]
 
 // export const organinzationRequestList = [
