@@ -17,18 +17,18 @@ export default async function RootLayout({
   children,
   admin,
   donor,
-  receiver
+  organization
 }: Readonly<{
   children: React.ReactNode;
   admin: React.ReactNode;
   donor: React.ReactNode;
-  receiver: React.ReactNode;
+  organization: React.ReactNode;
 }>) {
   const isAdminLoggedIn = await getCookie('adminLoggedIn', { cookies })
   const isDonorLoggedIn = await getCookie('donorLoggedIn', { cookies })
-  const isReceiverLoggedIn = await getCookie('receiverLoggedIn', { cookies })
+  const isOrganizationLoggedIn = await getCookie('organizationLoggedIn', { cookies })
 
-	if(![isAdminLoggedIn, isDonorLoggedIn, isReceiverLoggedIn].some(elem => elem)) return (
+	if(![isAdminLoggedIn, isDonorLoggedIn, isOrganizationLoggedIn].some(elem => elem)) return (
     <html lang="en">
       <body className={playfair.className}>
         <main className="relative w-screen h-screen max-h-screen">
@@ -74,7 +74,7 @@ export default async function RootLayout({
           <div className='h-screen max-h-screen flex flex-col flex-1 py-4 backgroundImage'>
             <TopBar />
             {/* {children} */}
-            {isAdminLoggedIn ? admin : isDonorLoggedIn ? donor : isReceiverLoggedIn ? receiver : null}
+            {isAdminLoggedIn ? admin : isDonorLoggedIn ? donor : isOrganizationLoggedIn ? organization : null}
           </div>
 		    </main>
       </body>
