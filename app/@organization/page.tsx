@@ -154,271 +154,274 @@ export default function HomeOrganization()
 
     return (
         <section className='flex flex-col gap-8 px-8 py-8 overflow-auto'>
-            <p className='italic text-4xl'>Hello, {organization.firstName}!</p>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center max-h-[80vh] overflow-auto space-y-8">
-                    <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
-                        <FormField
-                            control={form.control}
-                            name="firstName"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>First Name:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="First Name"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="lastName"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Last Name:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Last Name"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Email:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="email"
-                                            placeholder="Email"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="gender"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-2'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Gender:</FormLabel>
-                                    <FormControl>
-                                        <select
-                                            {...field}
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        >
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="number"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Contact Number:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Contact Number"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
-                        <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization Name:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Organization Name"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="description"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization Description:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Organization Description"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="type"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Type:</FormLabel>
-                                    <FormControl>
-                                        <select
-                                            {...field}
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        >
-                                            {types.map(type => (
-                                                <option key={type} value={type}>{type}</option>
-                                            ))}
-                                        </select>
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
-                        <FormField
-                            control={form.control}
-                            name="address"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Address:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Address"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="area"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Area:</FormLabel>
-                                    <FormControl>
-                                        <select className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl" {...field}>
-                                            {areas.map(area => (
-                                                <option key={area} value={area}>{area}</option>
-                                            ))}
-                                        </select>
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="governorate"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Governorate:</FormLabel>
-                                    <FormControl>
-                                        <select
-                                            {...field}
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        >
-                                            {governorates.map(governorate => (
-                                                <option key={governorate} value={governorate}>{governorate}</option>
-                                            ))}
-                                        </select>
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="pdf"
-                            render={({ field }) => (
-                                <FormItem className='relative flex flex-col gap-6'>
-                                    <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization's Documents:</FormLabel>
-                                    <FormControl>
-                                        <input
-                                            onChange={(e) => {
-                                            // Update the value with the file list
-                                                form.setValue('pdf', e.target.files?.length ? [...Array.from(e.target.files).map(file => file.name)] : []);
-                                                field.onChange(e.target.files?.length ? [...Array.from(e.target.files).map(file => file.name)] : [])
-                                            }}
-                                            type="file"
-                                            accept=".pdf"
-                                            multiple
-                                            placeholder="Clinic #Cases"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
-                                    </FormControl>
-                                    <FormMessage className='absolute -bottom-6 text-[#D84243]' />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                    <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
-                        <GoogleMap
-                            mapContainerStyle={containerStyle}
-                            center={center}
-                            zoom={10}
-                            onClick={selectLocation}
-                            //@ts-expect-error mapRef is not null
-                            onLoad={(map) => mapRef.current = map}
-                        >
-                            {/* Only render marker if location is selected*/}
+            <div className='flex flex-col bg-[#fff] px-12 rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+                
+                <p className='italic text-4xl'>Hello, {organization.firstName}!</p>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center max-h-[80vh] overflow-auto space-y-8">
+                        <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
                             <FormField
                                 control={form.control}
-                                name="location"
-                                render={({ field }) =>
-                                    field?.value && <Marker position={{ lat: field.value.lat, lng: field.value.lng }} />
-                                }
+                                name="firstName"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>First Name:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="First Name"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
                             />
-                            <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
-                                <LocateFixed />
-                            </div>
-                        </GoogleMap>
-                    </LoadScript>
-                    <button
-                        type="submit"
-                        className=" text-[#fff] bg-[rgba(0,59,51,1)] font-semibold text-xl py-2 rounded-2xl w-screen max-w-[408px] shadow-md mt-[4.5rem]"
-                    >
-                        Submit
-                    </button>
-                </form>
-            </Form>
+                            <FormField
+                                control={form.control}
+                                name="lastName"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Last Name:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="Last Name"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Email:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="email"
+                                                placeholder="Email"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="gender"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-2'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Gender:</FormLabel>
+                                        <FormControl>
+                                            <select
+                                                {...field}
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            >
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="number"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Contact Number:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="Contact Number"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization Name:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="Organization Name"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="description"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization Description:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="Organization Description"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="type"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Type:</FormLabel>
+                                        <FormControl>
+                                            <select
+                                                {...field}
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            >
+                                                {types.map(type => (
+                                                    <option key={type} value={type}>{type}</option>
+                                                ))}
+                                            </select>
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className='flex w-full items-center justify-between gap-6 flex-wrap'>
+                            <FormField
+                                control={form.control}
+                                name="address"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Address:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                {...field}
+                                                type="text"
+                                                placeholder="Address"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="area"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Area:</FormLabel>
+                                        <FormControl>
+                                            <select className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl" {...field}>
+                                                {areas.map(area => (
+                                                    <option key={area} value={area}>{area}</option>
+                                                ))}
+                                            </select>
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="governorate"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Governorate:</FormLabel>
+                                        <FormControl>
+                                            <select
+                                                {...field}
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            >
+                                                {governorates.map(governorate => (
+                                                    <option key={governorate} value={governorate}>{governorate}</option>
+                                                ))}
+                                            </select>
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="pdf"
+                                render={({ field }) => (
+                                    <FormItem className='relative flex flex-col gap-6'>
+                                        <FormLabel className='font-medium text-[#003B33] text-2xl'>Organization's Documents:</FormLabel>
+                                        <FormControl>
+                                            <input
+                                                onChange={(e) => {
+                                                // Update the value with the file list
+                                                    form.setValue('pdf', e.target.files?.length ? [...Array.from(e.target.files).map(file => file.name)] : []);
+                                                    field.onChange(e.target.files?.length ? [...Array.from(e.target.files).map(file => file.name)] : [])
+                                                }}
+                                                type="file"
+                                                accept=".pdf"
+                                                multiple
+                                                placeholder="Clinic #Cases"
+                                                className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                            />
+                                        </FormControl>
+                                        <FormMessage className='absolute -bottom-6 text-[#D84243]' />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={center}
+                                zoom={10}
+                                onClick={selectLocation}
+                                //@ts-expect-error mapRef is not null
+                                onLoad={(map) => mapRef.current = map}
+                            >
+                                {/* Only render marker if location is selected*/}
+                                <FormField
+                                    control={form.control}
+                                    name="location"
+                                    render={({ field }) =>
+                                        field?.value && <Marker position={{ lat: field.value.lat, lng: field.value.lng }} />
+                                    }
+                                />
+                                <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
+                                    <LocateFixed />
+                                </div>
+                            </GoogleMap>
+                        </LoadScript>
+                        <button
+                            type="submit"
+                            className=" text-[#fff] bg-[rgba(0,59,51,1)] font-semibold text-xl py-2 rounded-2xl w-screen max-w-[408px] shadow-md mt-[4.5rem]"
+                        >
+                            Submit
+                        </button>
+                    </form>
+                </Form>
+            </div>
             <Dialog open={success}>
                 <DialogContent className='flex items-center gap-4 justify-center text-center'>
                     <BadgeCheck width={28} height={28} className='text-[#003B33]' />
