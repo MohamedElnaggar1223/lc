@@ -10,7 +10,7 @@ import {
     FormLabel,
     FormMessage,
   } from "@/components/ui/form"
-import { governorates, types } from "@/constants"
+import { areas, governorates, types } from "@/constants"
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { BadgeCheck, LocateFixed } from "lucide-react"
 import { useRef, useState, useEffect } from "react"
@@ -80,7 +80,7 @@ export default function HomeOrganization()
         }).refine((value) => organizations.find(organization => organization.email === value) && organization?.email !== value ? false : true , {
             message: "Email already exists.",
         }),
-        area: z.string().min(2, {
+        area: z.enum(["Maadi", "Zamalek", "Downtown", "Heliopolis", "Nasr City", "6th of October City", "Sheikh Zayed", "New Cairo", "El Rehab City", "Madinet Nasr", "El Shorouk City", "El Tagamo' El Khames", "El Obour City", "El Mohandessin", "El Agouza", "El Dokki", "El Haram"], {
             message: "Area must be at least 2 characters.",
         }),
         governorate: z.enum(["Alexandria", "Aswan", "Asyut", "Beheira", "Beni Suef", "Cairo", "Dakahlia", "Damietta", "Faiyum", "Gharbia", "Giza", "Ismailia", "Kafr El Sheikh", "Luxor", "Matruh", "Minya", "Monufia", "New Valley", "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"], {
@@ -334,12 +334,11 @@ export default function HomeOrganization()
                                 <FormItem className='relative flex flex-col gap-6'>
                                     <FormLabel className='font-medium text-[#003B33] text-2xl'>Area:</FormLabel>
                                     <FormControl>
-                                        <input
-                                            {...field}
-                                            type="text"
-                                            placeholder="Area"
-                                            className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                        />
+                                        <select className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl" {...field}>
+                                            {areas.map(area => (
+                                                <option key={area} value={area}>{area}</option>
+                                            ))}
+                                        </select>
                                     </FormControl>
                                     <FormMessage className='absolute -bottom-6 text-[#D84243]' />
                                 </FormItem>
@@ -423,7 +422,7 @@ export default function HomeOrganization()
             <Dialog open={success}>
                 <DialogContent className='flex items-center gap-4 justify-center text-center'>
                     <BadgeCheck width={28} height={28} className='text-[#003B33]' />
-                    <p className='text-[#003B33] font-bold text-lg'>Your Details Has Been Updated!</p>
+                    <p className='text-[#003B33] font-bold text-lg'>Your Details Have Been Updated!</p>
                 </DialogContent>
             </Dialog>
         </section>
