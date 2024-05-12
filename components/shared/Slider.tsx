@@ -34,6 +34,7 @@ export default function Slider()
                             onClick={() => setSliderOpen(false)} 
                             layoutId="XId"
                             className='cursor-pointer'
+                            stroke='#003B33'
                         />
                     ) : (
                         <MenuMotion 
@@ -43,6 +44,7 @@ export default function Slider()
                             onClick={() => setSliderOpen(true)} 
                             layoutId="menuId" 
                             className='cursor-pointer'
+                            stroke='#003B33'
                         />
                     )}
                 </div>
@@ -81,7 +83,7 @@ export default function Slider()
                         }} 
                         className={cn('flex mt-auto items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic')}
                     >
-                        <LogOut width={48} />
+                        <LogOut stroke='#003B33' width={48} />
                         {sliderOpen && <p className={cn('font-bold')}>Log out</p>}
                     </div>
                 </div>

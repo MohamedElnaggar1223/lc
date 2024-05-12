@@ -80,23 +80,21 @@ export default function TeachingPost({ post, postDetails, index, pending }: Prop
                     </select>
                     <input type='number' value={details.numberOfStudents} onChange={e => setDetails(prev => ({ ...prev, numberOfStudents: parseInt(e.target.value) }))} />
                 </div>
-                <div className='rounded-full w-24 h-24 cursor-pointer overflow-hidden'>
-                    <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
-                        <GoogleMap
-                            mapContainerStyle={containerStyle}
-                            center={center}
-                            zoom={10}
-                            onClick={selectLocation}
-                            //@ts-expect-error mapRef is not null
-                            onLoad={(map) => mapRef.current = map}
-                        >
-                            {details?.location && <Marker position={{ lat: details?.location.lat, lng: details?.location.lng }} />}
-                            <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
-                                <LocateFixed />
-                            </div>
-                        </GoogleMap>
-                    </LoadScript>
-                </div>
+                <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
+                    <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={center}
+                        zoom={10}
+                        onClick={selectLocation}
+                        //@ts-expect-error mapRef is not null
+                        onLoad={(map) => mapRef.current = map}
+                    >
+                        {details?.location && <Marker position={{ lat: details?.location.lat, lng: details?.location.lng }} />}
+                        <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
+                            <LocateFixed />
+                        </div>
+                    </GoogleMap>
+                </LoadScript>
             </div>
             ) : (
                 <>
@@ -105,20 +103,20 @@ export default function TeachingPost({ post, postDetails, index, pending }: Prop
                         <p className='text-[rgba(0,59,51,1)] text-2xl'>No. of Students: {details.numberOfStudents}</p>
                     </div>
                     <div className='flex flex-1 flex-col items-start gap-4'>
-                        <div className='rounded-full w-24 h-24 overflow-hidden'>
-                            <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
-                                <GoogleMap
-                                    mapContainerStyle={containerStyle}
-                                    center={center}
-                                    zoom={10}
-                                >
-                                    {details?.location && <Marker position={{ lat: details?.location.lat, lng: details?.location.lng }} />}
-                                    <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
-                                        <LocateFixed />
-                                    </div>
-                                </GoogleMap>
-                            </LoadScript>
-                         </div>
+                        <LoadScript googleMapsApiKey={process.env.GOOGLE_API_KEY!}>
+                            <GoogleMap
+                                mapContainerStyle={containerStyle}
+                                center={center}
+                                zoom={10}
+                                //@ts-expect-error mapRef is not null
+                                onLoad={(map) => mapRef.current = map}
+                            >
+                                {details?.location && <Marker position={{ lat: details?.location.lat, lng: details?.location.lng }} />}
+                                <div onClick={centerMapOnMarker} className='absolute right-2.5 bg-white top-40 px-[7.5px] rounded-sm cursor-pointer py-2 border border-[rgba(0,0,0,0.25)]'>
+                                    <LocateFixed />
+                                </div>
+                            </GoogleMap>
+                        </LoadScript>
                     </div>
                 </>
             )}

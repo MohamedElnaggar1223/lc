@@ -3,32 +3,32 @@ import { UserCog, ListChecks, Home, Building2, Users, UserCheck, FileClock, Note
 export const adminSideBarMenu = [
     {
         title: "Dashboard",
-        icon: <Home width={48} />,
+        icon: <Home stroke='#003B33' width={48} />,
         path: "/",
     },
     {
         title: "My Profile",
-        icon: <UserCog width={48} />,
+        icon: <UserCog stroke='#003B33' width={48} />,
         path: "/profile",
     },
     {
         title: "Submissions/Requests",
-        icon: <ListChecks width={48} />,
+        icon: <ListChecks stroke='#003B33' width={48} />,
         path: "/submission-review",
     },
     {
         title: "Donors Requests",
-        icon: <UserCheck width={48} />,
+        icon: <UserCheck stroke='#003B33' width={48} />,
         path: "/donors-reviews",
     },
     {
         title: "Organizations List",
-        icon: <Building2 width={48} />,
+        icon: <Building2 stroke='#003B33' width={48} />,
         path: "/organizations",
     },
     {
         title: "Donors List",
-        icon: <Users width={48} />,
+        icon: <Users stroke='#003B33' width={48} />,
         path: "/donors",
     },
 ]
@@ -36,22 +36,22 @@ export const adminSideBarMenu = [
 export const donorSideBarMenu = [
     {
         title: "Dashboard",
-        icon: <Home width={48} />,
+        icon: <Home stroke='#003B33' width={48} />,
         path: "/",
     },
     {
         title: "My Profile",
-        icon: <UserCog width={48} />,
+        icon: <UserCog stroke='#003B33' width={48} />,
         path: "/profile",
     },
     {
         title: "Donations",
-        icon: <HeartHandshake width={48} />,
+        icon: <HeartHandshake stroke='#003B33' width={48} />,
         path: "/donations",
     },
     {
         title: 'Organizations',
-        icon: <Building2 width={48} />,
+        icon: <Building2 stroke='#003B33' width={48} />,
         path: '/organizations',
     }
 ]
@@ -59,27 +59,27 @@ export const donorSideBarMenu = [
 export const organizationSideBarMenu = [
     {
         title: 'My Details',
-        icon: <UserCog width={48} />,
+        icon: <UserCog stroke='#003B33' width={48} />,
         path: '/',
     },
     {
         title: 'Fullfilled Posts',
-        icon: <ListChecks width={48} />,
+        icon: <ListChecks stroke='#003B33' width={48} />,
         path: '/fullfilled-posts',
     },
     {
         title: 'Pending Posts',
-        icon: <NotepadText width={48} />,
+        icon: <NotepadText stroke='#003B33' width={48} />,
         path: '/pending-posts',
     },
     {
         title: 'In Progress Posts',
-        icon: <FileClock width={48} />,
+        icon: <FileClock stroke='#003B33' width={48} />,
         path: '/in-progress-posts',
     },
     {
         title: 'Create Post',
-        icon: <FilePlus2 width={48} />,
+        icon: <FilePlus2 stroke='#003B33' width={48} />,
         path: '/create-post',
     }
 ]

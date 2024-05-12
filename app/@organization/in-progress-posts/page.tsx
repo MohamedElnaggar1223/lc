@@ -23,7 +23,7 @@ export default function InProgressPosts()
 
     return (
         <section className='flex flex-col gap-8 px-8 py-8 overflow-auto'>
-            <div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+            <div className='flex flex-col bg-[#fff] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
                 {organizationPosts.map((post, index) => {
                     const category = post.category
                     if(category === 'Clothes')

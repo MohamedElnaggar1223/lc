@@ -11,16 +11,27 @@ import {
     FormMessage,
   } from "@/components/ui/form"
 import { setCookie } from "cookies-next"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useAdminStore, useDonorStore, useOrganizationStore } from "@/lib/store"
+import { useEffect, useState } from "react"
+import { Eye, EyeOff } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export default function LogInForm()
 {
     const router = useRouter()
+    const pathname = usePathname()
 
     const { admin } = useAdminStore()
     const { donors } = useDonorStore()
     const { organizations } = useOrganizationStore()
+
+    const [passwordVisible, setPasswordVisible] = useState(false)
+    const [passwordWrong, setPasswordWrong] = useState(false)
+
+    useEffect(() => {
+        if(passwordWrong) setTimeout(() => setPasswordWrong(false), 400)
+    }, [passwordWrong])
 
     const loginSchema = z.object({
         email: z.string().min(2, {
@@ -48,6 +59,7 @@ export default function LogInForm()
     })
 
     const onSubmit = (values: z.infer<typeof loginSchema>) => {
+        setPasswordWrong(false)
         if(values.email === "admin@test.com") setCookie('adminLoggedIn', 'true', { maxAge: 60 * 6 * 24 })
         if(donors.find(donor => donor.email === values.email)) 
         {
@@ -90,12 +102,31 @@ export default function LogInForm()
                         <FormItem className='relative flex flex-col gap-8 mt-12'>
                             <FormLabel className='font-medium text-[#003B33] text-2xl'>Password:</FormLabel>
                             <FormControl>
-                                <input
-                                    {...field}
-                                    type="password"
-                                    placeholder="Password"
-                                    className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                />
+                                <div className={cn('relative', passwordWrong ? '[&>input]:border-red-400 animate-shake' : '')}>
+                                    <input
+                                        {...field}
+                                        type={passwordVisible ? 'text' : "password"}
+                                        placeholder="Password"
+                                        className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
+                                    />
+                                    {passwordVisible ? (
+                                        <Eye
+                                            className={cn('absolute top-[24%] z-50 cursor-pointer', pathname?.includes('/ar') ? 'left-[5%]' : 'left-[90%]')} 
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                setPasswordVisible(prev => !prev)
+                                            }} 
+                                        />
+                                    ) : (
+                                        <EyeOff
+                                            className={cn('absolute top-[24%] z-50 cursor-pointer', pathname?.includes('/ar') ? 'left-[5%]' : 'left-[90%]')} 
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                setPasswordVisible(prev => !prev)
+                                            }} 
+                                        />
+                                    )}
+                                </div>
                             </FormControl>
                             <FormMessage className='absolute -bottom-6 text-[#D84243]' />
                         </FormItem>
@@ -104,6 +135,9 @@ export default function LogInForm()
                 <button
                     type="submit"
                     className=" text-[#fff] bg-[rgba(0,59,51,1)] font-semibold text-xl py-2 rounded-2xl w-screen max-w-[408px] shadow-md mt-[4.5rem]"
+                    onClick={() => {
+                        setPasswordWrong(true)
+                    }}
                 >
                     Log in
                 </button>

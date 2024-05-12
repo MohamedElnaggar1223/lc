@@ -19,7 +19,7 @@ export default function OrganizationPage({ params }: Props)
         <AnimatePresence>
 
             <section className='flex flex-col gap-8 px-8 py-8 overflow-auto'>
-                <div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+                <div className='flex flex-col bg-[#fff] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
                     <div className='px-12 flex items-center justify-between py-4 gap-12'>
                         <div className='flex flex-col gap-8 flex-1'>
                             <div className='flex-1 items-center flex justify-between'>

@@ -89,7 +89,7 @@ export default function OrgainzationsListPage()
                 )}
             </div>
             <AnimatePresence>
-                <motion.div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+                <motion.div className='flex flex-col bg-[#fff] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
                     {organizations
                     .filter(organization => organization.status === 'Accepted')
                     .filter(organization => organization.name.toLowerCase().includes(search.toLowerCase()))

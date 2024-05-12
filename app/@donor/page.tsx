@@ -274,7 +274,7 @@ export default function HomeDonor()
                     </>
                 )}
             </div>
-            <div className='flex flex-col bg-[#f0f0f0] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
+            <div className='flex flex-col bg-[#fff] divide-y rounded-3xl border-[rgba(0,59,51,0.5)] gap-12 py-8 mx-auto border-8 w-screen max-w-[1080px]'>
                 {postsShown.map((post) => {
                     const postCategory = post.category
                     if(postCategory === 'Clothes')
