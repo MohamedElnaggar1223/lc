@@ -6,7 +6,6 @@ import FoodPost from "@/components/Donor/FoodPost"
 import MedicalCasesPost from "@/components/Donor/MedicalCasesPost"
 import MedicalSuppliesPost from "@/components/Donor/MedicalSuppliesPost"
 import SchoolSuppliesPost from "@/components/Donor/SchoolSuppliesPost"
-import TeachingPost from "@/components/Donor/TeachingPost"
 import ToysPost from "@/components/Donor/ToysPost"
 import { BloodDonation, Clothes, Food, MedicalCases, MedicalSupplies, SchoolSupplies, Teaching, Toys, useDoctorStore, useDonorStore, useOrganizationStore, usePostsStore, useTeacherStore } from "@/lib/store"
 import { getCookie } from "cookies-next"
@@ -311,7 +310,7 @@ export default function HomeDonor()
                     else if(postCategory === 'Teaching')
                     {
                         const details = post.details as Teaching
-                        return <TeachingPost key={post.id} details={details} category={category} area={area} governorate={governorate} post={post} subject={subject} />
+                        // return <TeachingPost key={post.id} details={details} category={category} />
                     }
                     else if(postCategory === 'Blood Donation')
                     {
