@@ -1,25 +1,25 @@
 'use client'
-import { BloodDonation, Clothes, Food, MedicalCases, MedicalSupplies, SchoolSupplies, Teaching, Toys, usePostsStore } from "@/lib/store"
+import BloodDonationPost from "@/app/@organization/pending-posts/blooddonationpost"
+import ClothesPost from "@/app/@organization/pending-posts/clothespost"
+import FoodPost from "@/app/@organization/pending-posts/foodpost"
+import MedicalCasesPost from "@/app/@organization/pending-posts/medicalcasespost"
+import MedicalSuppliesPost from "@/app/@organization/pending-posts/medicalsuppliespost"
+import SchoolSuppliesPost from "@/app/@organization/pending-posts/schoolsuppliespost"
+import TeachingPost from "@/app/@organization/pending-posts/teachingpost"
+import ToysPost from "@/app/@organization/pending-posts/toyspost"
+import { usePostsStore, Clothes, Food, Toys, MedicalSupplies, SchoolSupplies, MedicalCases, Teaching, BloodDonation } from "@/lib/store"
 import { getCookie } from "cookies-next"
-import ClothesPost from "./clothespost"
 import { useMemo } from "react"
-import FoodPost from "./foodpost"
-import ToysPost from "./toyspost"
-import MedicalSuppliesPost from "./medicalsuppliespost"
-import SchoolSuppliesPost from "./schoolsuppliespost"
-import TeachingPost from "./teachingpost"
-import BloodDonationPost from "./blooddonationpost"
-import MedicalCasesPost from "./medicalcasespost"
 
-export default function InProgressPosts() 
+export default function InProgressPosts()
 {
-    const organization = getCookie('organizationEmail')
-
     const { posts } = usePostsStore()
 
     const organizationPosts = useMemo(() => {
-        return posts.filter(post => post.organization === organization).filter(post => post.status === 'Pending')
+        return posts.filter(post => post.status === 'In Progress')
     }, [posts])
+
+    console.log(organizationPosts)
 
     return (
         <section className='flex flex-col gap-8 px-8 py-8 overflow-auto'>
@@ -30,43 +30,43 @@ export default function InProgressPosts()
                     {
                         const details = post.details as Clothes
                         return (
-                            <ClothesPost key={post.id} post={post} postDetails={details} index={index} />
+                            <ClothesPost key={post.id} post={post} postDetails={details} index={index} pending />
                         )   
                     }
                     else if(category === 'Food')
                     {
                         const details = post.details as Food
-                        return <FoodPost key={post.id} post={post} postDetails={details} index={index} />
+                        return <FoodPost key={post.id} post={post} postDetails={details} index={index} pending />
                     }
                     else if(category === 'Toys')
                     {
                         const details = post.details as Toys
-                        return <ToysPost key={post.id} post={post} postDetails={details} index={index} />
+                        return <ToysPost key={post.id} post={post} postDetails={details} index={index} pending />
                     }
                     else if(category === 'Medical Supplies')
                     {
                         const details = post.details as MedicalSupplies
-                        return <MedicalSuppliesPost key={post.id} post={post} postDetails={details} index={index} />   
+                        return <MedicalSuppliesPost key={post.id} post={post} postDetails={details} index={index} pending />   
                     }
                     else if(category === 'School Supplies')
                     {
                         const details = post.details as SchoolSupplies
-                        return <SchoolSuppliesPost key={post.id} post={post} postDetails={details} index={index} />   
+                        return <SchoolSuppliesPost key={post.id} post={post} postDetails={details} index={index} pending />   
                     }
                     else if(category === 'Medical Cases')
                     {
                         const details = post.details as MedicalCases
-                        return <MedicalCasesPost key={post.id} post={post} postDetails={details} index={index} />   
+                        return <MedicalCasesPost key={post.id} post={post} postDetails={details} index={index} pending />   
                     }
                     else if(category === 'Teaching')
                     {
                         const details = post.details as Teaching
-                        return <TeachingPost key={post.id} post={post} postDetails={details} index={index} />
+                        return <TeachingPost key={post.id} post={post} postDetails={details} index={index} pending />
                     }
                     else if(category === 'Blood Donation')
                     {
                         const details = post.details as BloodDonation
-                        return <BloodDonationPost key={post.id} post={post} postDetails={details} index={index} />
+                        return <BloodDonationPost key={post.id} post={post} postDetails={details} index={index} pending />
                     }
                 })}
             </div>

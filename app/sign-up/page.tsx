@@ -49,7 +49,7 @@ export default function SignUp()
         }).refine((value) => organizations.find(organization => organization.email === value) ? false : true , {
             message: "Email already exists.",
         }),
-        area: z.string().min(2, {
+        area: z.enum(["Maadi", "Zamalek", "Downtown", "Heliopolis", "Nasr City", "6th of October City", "Sheikh Zayed", "New Cairo", "El Rehab City", "Madinet Nasr", "El Shorouk City", "El Tagamo' El Khames", "El Obour City", "El Mohandessin", "El Agouza", "El Dokki", "El Haram"], {
             message: "Area must be at least 2 characters.",
         }),
         governorate: z.enum(["Alexandria", "Aswan", "Asyut", "Beheira", "Beni Suef", "Cairo", "Dakahlia", "Damietta", "Faiyum", "Gharbia", "Giza", "Ismailia", "Kafr El Sheikh", "Luxor", "Matruh", "Minya", "Monufia", "New Valley", "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"], {
@@ -80,7 +80,7 @@ export default function SignUp()
             lastName: "",
             gender: "Male",
             number: "",
-            area: "",
+            area: "El Dokki",
             governorate: "Cairo",
             address: ""
         },
@@ -197,12 +197,14 @@ export default function SignUp()
                             <FormItem className='relative flex flex-col gap-2'>
                                 <FormLabel className='font-medium text-[#003B33] text-2xl'>Area:</FormLabel>
                                 <FormControl>
-                                    <input
+                                    <select
                                         {...field}
-                                        type="text"
-                                        placeholder="Area"
                                         className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                    />
+                                    >
+                                        {["Maadi", "Zamalek", "Downtown", "Heliopolis", "Nasr City", "6th of October City", "Sheikh Zayed", "New Cairo", "El Rehab City", "Madinet Nasr", "El Shorouk City", "El Tagamo' El Khames", "El Obour City", "El Mohandessin", "El Agouza", "El Dokki", "El Haram"].map(area => (
+                                            <option key={area} value={area}>{area}</option>
+                                        ))}
+                                    </select>
                                 </FormControl>
                                 <FormMessage className='absolute -bottom-6 text-[#D84243]' />
                             </FormItem>

@@ -13,7 +13,7 @@ import {
   } from "@/components/ui/form"
 import { useRouter } from "next/navigation"
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { governorates } from "@/constants"
+import { areas, governorates } from "@/constants"
 import { useState, useEffect, useRef } from "react"
 import { LocateFixed } from "lucide-react"
 
@@ -43,7 +43,7 @@ export default function DoctorApplication({ doctor }: Props)
         clinicAddress: z.string().min(2, {
             message: "Clinic address must be at least 2 characters.",
         }),
-        clinicArea: z.string().min(2, {
+        clinicArea: z.enum(["Maadi", "Zamalek", "Downtown", "Heliopolis", "Nasr City", "6th of October City", "Sheikh Zayed", "New Cairo", "El Rehab City", "Madinet Nasr", "El Shorouk City", "El Tagamo' El Khames", "El Obour City", "El Mohandessin", "El Agouza", "El Dokki", "El Haram"], {
             message: "Clinic area must be at least 2 characters.",
         }),
         clinicGovernorate: z.enum(["Alexandria", "Aswan", "Asyut", "Beheira", "Beni Suef", "Cairo", "Dakahlia", "Damietta", "Faiyum", "Gharbia", "Giza", "Ismailia", "Kafr El Sheikh", "Luxor", "Matruh", "Minya", "Monufia", "New Valley", "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"], {
@@ -68,7 +68,7 @@ export default function DoctorApplication({ doctor }: Props)
         resolver: zodResolver(doctorSchema),
         defaultValues: {
             clinicAddress: '',
-            clinicArea: '',
+            clinicArea: 'El Agouza',
             clinicGovernorate: 'Cairo',
             clinicLocation: currentLocation,
             clinicSpecialty: '',
@@ -131,12 +131,11 @@ export default function DoctorApplication({ doctor }: Props)
                             <FormItem className='relative flex flex-col gap-8'>
                                 <FormLabel className='font-medium text-[#003B33] text-2xl'>Clinic Area:</FormLabel>
                                 <FormControl>
-                                    <input
-                                        {...field}
-                                        type="text"
-                                        placeholder="Clinic Area"
-                                        className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl"
-                                    />
+                                    <select {...field} className="w-screen max-w-[408px] outline-none  border-2 border-[rgba(0,59,51,0.5)] shadow-md px-2 py-2 rounded-2xl">
+                                        {areas.map(area => (
+                                            <option key={area} value={area}>{area}</option>
+                                        ))}
+                                    </select>
                                 </FormControl>
                                 <FormMessage className='absolute -bottom-6 text-[#D84243]' />
                             </FormItem>

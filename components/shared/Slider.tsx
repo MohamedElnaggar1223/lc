@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { AnimatePresence, motion } from "framer-motion"
 import { LogOut, Menu, X } from "lucide-react"
 import { useState } from "react"
-import { adminSideBarMenu, organizationSideBarMenu } from "@/constants"
+import { adminSideBarMenu, donorSideBarMenu, organizationSideBarMenu } from "@/constants"
 import { usePathname, useRouter } from "next/navigation"
 import { deleteCookie, getCookie } from "cookies-next"
 
@@ -55,7 +55,7 @@ export default function Slider()
                             </div>
                         ))
                     ) : isDonorLoggedIn ? (
-                        adminSideBarMenu.map((menu, index) => (
+                        donorSideBarMenu.map((menu, index) => (
                             <div onClick={() => router.push(menu.path)} key={index} className={cn('flex items-center gap-4 w-full px-2.5 py-3 rounded-lg text-lg cursor-pointer italic', pathname === menu.path && '[&>svg]:stroke-[#fff] bg-[rgba(0,59,51,0.5)]')}>
                                 {menu.icon}
                                 {sliderOpen && <p className={cn('font-bold', pathname === menu.path && 'text-white')}>{menu.title}</p>}

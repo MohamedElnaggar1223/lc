@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Filter, Search, Trash2 } from "lucide-react";
 import { useOrganizationStore } from "@/lib/store";
-import { governorates } from "@/constants";
+import { governorates, areas } from "@/constants";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -15,6 +15,7 @@ export default function OrgainzationsListPage()
     const [filtersOpen, setFiltersOpen] = useState(false)
     const [types, setTypes] = useState<string[]>([])
     const [governoratesList, setGovernoratesList] = useState<string[]>([])
+    const [areasList, setAreasList] = useState<string[]>([])
 
     const dropdownRef = useRef<HTMLDivElement>(null)
     const dropdownIconRef = useRef<SVGSVGElement>(null)
@@ -38,7 +39,7 @@ export default function OrgainzationsListPage()
 
     return (
         <section className='flex flex-col gap-8 px-8 py-8 overflow-auto'>
-            <div className='relative border-[rgba(0,59,51,0.5)] border-4 flex px-1.5 py-1.5 w-screen max-w-[658px] text-[rgba(0,59,51,0.5)] rounded-lg bg-[#fff] mx-auto'>
+            <div className='relative border-[rgba(0,59,51,0.5)] border-4 flex px-1.5 py-1.5 w-screen max-w-[658px] text-[rgba(0,59,51,0.5)] rounded-lg bg-[#fff] mx-auto max-h-[500px]'>
                 <input 
                     type='text' 
                     placeholder='Search' 
@@ -71,6 +72,19 @@ export default function OrgainzationsListPage()
                                 ))}
                             </div>
                         </div>
+                        <div className='flex flex-col'>
+                            <p className='font-semibold italic text-lg mb-2'>Area(s): </p>
+                            <div className='flex gap-6 flex-wrap'>
+                                {areas.map((area, index) => (
+                                    <p key={index} onClick={() => setAreasList(prev => prev.includes(area) ? prev.slice().filter(gov => gov !== area) : ([...prev, area]))} className={cn('font-medium cursor-pointer px-2 py-1 rounded-lg italic text-base', areasList.includes(area) && 'bg-[#F8E6D9]')}>{area}</p>
+                                ))}
+                            </div>
+                        </div>
+                        <button onClick={() => {
+                            setTypes([])
+                            setGovernoratesList([])
+                            setAreasList([])
+                        }} className='bg-[#F4D8C2] text-white rounded-md px-6 mt-2 ml-auto mr-12 py-2 flex items-center gap-2'>Clear Filters</button>
                     </div>
                 )}
             </div>
@@ -81,6 +95,7 @@ export default function OrgainzationsListPage()
                     .filter(organization => organization.name.toLowerCase().includes(search.toLowerCase()))
                     .filter(organization => types.length > 0 ? types.includes(organization.type) : true)   
                     .filter(organization => governoratesList.length > 0 ? governoratesList.includes(organization.governorate) : true)           
+                    .filter(organization => areasList.length > 0 ? areasList.includes(organization.area) : true)
                     .map((organization, index) => (
                         <div onClick={() => router.push(`/organizations/${organization.name}`)} key={organization.name} className='px-12 flex items-center justify-between py-4 gap-12 cursor-pointer'>
                             <p className='text-[rgba(0,59,51,1)] text-2xl'>{index + 1}</p>

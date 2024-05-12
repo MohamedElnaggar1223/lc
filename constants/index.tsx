@@ -1,4 +1,4 @@
-import { UserCog, ListChecks, Home, Building2, Users, UserCheck, FileClock, NotepadText, FilePlus2 } from "lucide-react";
+import { UserCog, ListChecks, Home, Building2, Users, UserCheck, FileClock, NotepadText, FilePlus2, HeartHandshake } from "lucide-react";
 
 export const adminSideBarMenu = [
     {
@@ -46,9 +46,14 @@ export const donorSideBarMenu = [
     },
     {
         title: "Donations",
-        icon: <ListChecks width={48} />,
+        icon: <HeartHandshake width={48} />,
         path: "/donations",
     },
+    {
+        title: 'Organizations',
+        icon: <Building2 width={48} />,
+        path: '/organizations',
+    }
 ]
 
 export const organizationSideBarMenu = [
@@ -135,6 +140,26 @@ export const types = [
     'Orphanage',
     'Public School',
     'Church'
+]
+
+export const areas = [
+    "Maadi", 
+    "Zamalek", 
+    "Downtown", 
+    "Heliopolis", 
+    "Nasr City", 
+    "6th of October City", 
+    "Sheikh Zayed", 
+    "New Cairo", 
+    "El Rehab City", 
+    "Madinet Nasr", 
+    "El Shorouk City", 
+    "El Tagamo' El Khames", 
+    "El Obour City", 
+    "El Mohandessin", 
+    "El Agouza", 
+    "El Dokki", 
+    "El Haram"
 ]
 
 // export const organinzationRequestList = [
